@@ -21,8 +21,8 @@ app.use(express.json())
 // use static
 // app.use(express.static(path.resolve(__dirname, './view')))
 // single page app
-const port = process.env.PORT || 3000
-app.get(port, function (req, res) {
+const port = process.env.PORT || 5000
+app.get('/', function (req, res) {
   // const html = fs.readFileSync(path.resolve(__dirname, './view/index.html'), 'utf-8')
   // res.send(html)
   res.send('Helloword300')
