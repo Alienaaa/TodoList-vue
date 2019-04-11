@@ -21,11 +21,12 @@ app.use(api)
 // use static
 // app.use(express.static(path.resolve(__dirname, './view')))
 // single page app
-app.get('/', function (req, res) {
+const port = process.env.PORT || 3000
+app.get(port, function (req, res) {
   // const html = fs.readFileSync(path.resolve(__dirname, './view/index.html'), 'utf-8')
   // res.send(html)
   res.send('Helloword300')
 })
 // listen to port
-const port = process.env.PORT || 3000
+
 app.listen(port, () => console.log('server started on port', port))
