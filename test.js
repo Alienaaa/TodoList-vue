@@ -29,4 +29,4 @@ app.get(port, function (req, res) {
 })
 // listen to port
 
-app.listen(port, () => console.log('server started on port', port))
+app.listen(port, process.env.IP, () => console.log('server started on port', port))
