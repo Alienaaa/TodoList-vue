@@ -22,10 +22,10 @@ app.use(express.json())
 // app.use(express.static(path.resolve(__dirname, './view')))
 // single page app
 const port = process.env.PORT || 3000
-app.get(port, function (req, res) {
+app.get('/', function (req, res) {
   // const html = fs.readFileSync(path.resolve(__dirname, './view/index.html'), 'utf-8')
   // res.send(html)
-  res.send('Helloword300')
+  res.send('Helloword3000000')
 })
 // listen to port
 
