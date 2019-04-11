@@ -24,7 +24,9 @@
     "sass-loader": "^7.1.0",
     "scss": "^0.2.4",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "body-parser": "^1.18.3",
+    "mongoose": "^5.4.19"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
