@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 // import api
-// const api = require('./api')
+const api = require('./api')
 // import module to read file
 const fs = require('fs')
 // import module to resolve path
@@ -13,7 +13,7 @@ const app = express()
 //  const models = require('./db')
 
 app.use(express.json())
-// app.use(api)
+app.use(api)
 
 // app.use(bodyParser.json())
 // app.use(bodyParser.urlencoded({extended: false}))
