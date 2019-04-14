@@ -32,13 +32,13 @@
           </div>
           <div>
             <span style="font-size:10px;color:#a5a5a5">まだ登録されていません？</span>
-            <el-button type="text" v-on:click="registerVisible = true;loginVisible = false">登録</el-button>
+            <el-button type="text" v-on:click="clickChangeButton">新規登録</el-button>
           </div>
         </div>
       </el-dialog>
       <!-- Register -->
       <transition name="el-fade-in-linear">
-      <el-dialog title="ユーザ登録" :visible.sync="registerVisible" center>
+      <el-dialog title="ユーザ新規登録" :visible.sync="registerVisible" center>
         <el-form :model="register">
           <el-form-item label="ユーザID" :label-width="formLabelWidth">
             <el-input v-model="register.name" autocomplete="off"></el-input>
@@ -50,7 +50,7 @@
         <div slot="footer" class="dialog-footer">
           <div>
             <el-button v-on:click="registerVisible = false">キャンセル</el-button>
-            <el-button type="primary" v-on:click="userRegister">登録</el-button>
+            <el-button type="primary" v-on:click="userRegister">新規登録</el-button>
           </div>
           <div>
             <span style="font-size:10px;color:#a5a5a5">すでに登録されていますか？</span>
@@ -70,33 +70,38 @@
         </el-form-item>
       </el-form>
       <div class="alert-list">
-        <el-alert v-show="isAlertShowListNULL" title="ToDo名を必ず入力してください" type="error"></el-alert>
-        <el-alert v-show="isAlertShowListOver" title="ToDo名を３０字以内にしてください" type="error"></el-alert>
-        <el-alert v-show="isAlertShowListSame" title="入力したToDo名はすでに存在しています" type="error"></el-alert>
+        <el-alert v-show="isAlertShowListNULL" title="ToDo名を必ず入力してください" type="error" show-icon></el-alert>
+        <el-alert v-show="isAlertShowListOver" title="ToDo名を３０字以内にしてください" type="error" show-icon></el-alert>
+        <el-alert v-show="isAlertShowListSame" title="入力したToDo名はすでに存在しています" type="error" show-icon></el-alert>
       </div>
     </div>
     <!-- lists container -->
     <div>
-      <div v-if="(this.lists.length===0)">
+      <transition name="el-fade-in-linear">
+        <div v-if="createSuccess" style="padding-bottom:20px">
+          <el-alert title="新しいToDoリストが作成されました" type="success" show-icon></el-alert>
+        </div>
+      </transition>
+      <div v-if="lists.length === 0 && isGet">
         <el-alert title="登録されたToDoリストはございません" type="error"></el-alert>
       </div>
-
-      <div v-else v-for="(item,index) in sortBycreatedate" v-bind:key="index"  class="todo-list">
-        <el-card class="box-card" shadow="hover">
-          <div slot="header" class="clearfix">
-            <span class="todolist-title" v-on:click="jumpTolist(index,item)">{{item.title}}</span>
-            <i class="el-icon-delete" style="float: right; cursor:pointer" autofocus="true" v-on:click="deleteTodolist(item)"></i>
-          </div>
-          <div class="text item" v-if="(approachingDDL(item) === -1)">
-            <p>ToDoはございません</p>
-          </div>
-          <div v-else class="text item">
-            <p>{{item.TodoItem.length}}個中{{isChecked(item).length}}個がチェック済み</p>
-            <p>~{{getDate(approachingDDL(item))}}</p>
-          </div>
-        </el-card>
+      <div v-else>
+        <div v-for="(item,index) in sortBycreatedate" v-bind:key="index"  class="todo-list">
+          <el-card class="box-card" shadow="hover">
+            <div slot="header" class="clearfix">
+              <span class="todolist-title" v-on:click="jumpTolist(index,item)">{{item.title}}</span>
+              <i class="el-icon-delete" style="float: right; cursor:pointer" autofocus="true" v-on:click="deleteTodolist(item)"></i>
+            </div>
+            <div class="text item" v-if="(approachingDDL(item) === -1)">
+              <p>ToDoはございません</p>
+            </div>
+            <div v-else class="text item">
+              <p>{{item.TodoItem.length}}個中{{isChecked(item).length}}個がチェック済み</p>
+              <p>~{{getDate(approachingDDL(item))}}</p>
+            </div>
+          </el-card>
+        </div>
       </div>
-
     </div>
   </div>
 
@@ -106,6 +111,7 @@
 import moment from 'moment'
 import _ from 'lodash'
 import axios from 'axios'
+import { setTimeout } from 'timers'
 
 export default {
   name: 'Todo',
@@ -113,8 +119,6 @@ export default {
     // const lists = Store.fetch()
     return {
       lists: [],
-      input: '',
-      test: [],
       titleText: '',
       nextID: 0,
       listsSort: [],
@@ -133,8 +137,10 @@ export default {
         name: '',
         pass: ''
       },
+      createSuccess: false,
       formLabelWidth: '120px',
-      isLogin: false
+      isLogin: false,
+      isGet: false
     }
   },
   created () {
@@ -143,6 +149,9 @@ export default {
     if (window.sessionStorage.user) {
       this.isLogin = true
     }
+    this.$nextTick(() => {
+
+    })
     this.getAllTodolist()
   },
   computed: {
@@ -181,6 +190,7 @@ export default {
   },
   methods: {
     sendForm () {
+      var _this = this
       var checkList = false
       if (this.titleText.length === 0) {
         // ToDo名は空の時
@@ -213,11 +223,16 @@ export default {
 
         axios.post('/api/createTodolist', item)
           .then(function (response) {
+            _this.createSuccess = true
+            setTimeout(() => {
+              _this.createSuccess = false
+            }, 1000)
             console.log(response)
           })
           .catch(function (error) {
             console.log(error)
           })
+        this.getAllTodolist()
         this.getAllTodolist()
         this.titleText = ''
       }
@@ -231,7 +246,7 @@ export default {
         var TodoItem = item.TodoItem
         var ApproachingDDL = moment('2030-1-1')
         for (var i = 0; i < TodoItem.length; i++) {
-          if (moment().isBefore(TodoItem[i].TodoDDL) || moment().isSame(TodoItem[i].TodoDDL)) {
+          if ((moment().isBefore(TodoItem[i].TodoDDL) || moment().isSame(TodoItem[i].TodoDDL)) && (TodoItem[i].isDone === false)) {
             if (moment(TodoItem[i].TodoDDL).isBefore(ApproachingDDL)) {
               ApproachingDDL = TodoItem[i].TodoDDL
             }
@@ -288,6 +303,7 @@ export default {
         .then(function (response) {
           _this.lists = response.data
           _this.nextID = _this.lists.length
+          _this.isGet = true
           console.log(response.data)
         })
         .catch(function (error) {
@@ -390,6 +406,13 @@ export default {
         // console.log(username)
         return username
       }
+    },
+    clickChangeButton () {
+      var _this = this
+      _this.loginVisible = false
+      setTimeout(function () {
+        _this.registerVisible = true
+      }, 300)
     },
     deleteTodolist (item) {
       var _this = this

@@ -11,9 +11,9 @@
 
     <!-- Search Result(Todo item) -->
 
-      <div>
-        <el-alert class="alert-search" v-show="resultForTodo.length==0&&ifClickSearch" type="error" :closable="false">対象のToDoは見つかりません</el-alert>
-        <el-alert class="alert-search" v-show="resultForTodo.length!=0" type="success" :closable="false">ToDoが{{this.numOfTodo}}件見つかりました</el-alert>
+      <div v-show="ifClickSearch">
+        <el-alert class="alert-search" v-if="resultForTodo.length==0" type="error" :closable="false">対象のToDoは見つかりません</el-alert>
+        <el-alert class="alert-search" v-else type="success" :closable="false">ToDoが{{this.numOfTodo}}件見つかりました</el-alert>
       </div>
 
     <div v-for="(item,index) in resultForTodo" v-bind:key="index"  class="todo-item">
@@ -33,9 +33,9 @@
 
     <!-- Search Result(Todo list) -->
 
-      <div>
-        <el-alert class="alert-search" v-show="resultForTodoList.length==0&&ifClickSearch" type="error" :closable="false">対象のToDoリストは見つかりません</el-alert>
-        <el-alert class="alert-search" v-show="resultForTodoList.length!=0" type="success" :closable="false">ToDoリストが{{this.numOfList}}件見つかりました</el-alert>
+      <div  v-show="ifClickSearch">
+        <el-alert class="alert-search" v-if="resultForTodoList.length==0" type="error" :closable="false">対象のToDoリストは見つかりません</el-alert>
+        <el-alert class="alert-search" v-else type="success" :closable="false">ToDoリストが{{this.numOfList}}件見つかりました</el-alert>
       </div>
 
     <!--

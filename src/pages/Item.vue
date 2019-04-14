@@ -18,32 +18,34 @@
           <el-button type="primary" class="addtodo-button" v-on:click="sendForm" icon="el-icon-plus">ToDoの追加</el-button>
         </el-form-item>
         <div class="alert-todo">
-        <el-alert class="alert-todo-inner" v-show="isAlertShowDDL" title="期限は作成日の後にしてください" type="error"></el-alert>
-        <el-alert class="alert-todo-inner" v-show="isAlertShowDDL2" title="期限を選択してください" type="error"></el-alert>
-        <el-alert class="alert-todo-inner" v-show="isAlertShowNULL" title="ToDo名を必ず入力してください" type="error"></el-alert>
-        <el-alert class="alert-todo-inner" v-show="isAlertShowOver" title="ToDo名を３０字以内にしてください" type="error"></el-alert>
-        <el-alert class="alert-todo-inner" v-show="isAlertShowSame" title="入力したToDo名はすでに存在しています" type="error"></el-alert>
+        <el-alert class="alert-todo-inner" v-show="isAlertShowDDL" title="期限は作成日の後にしてください" type="error" show-icon></el-alert>
+        <el-alert class="alert-todo-inner" v-show="isAlertShowDDL2" title="期限を選択してください" type="error" show-icon></el-alert>
+        <el-alert class="alert-todo-inner" v-show="isAlertShowNULL" title="ToDo名を必ず入力してください" type="error" show-icon></el-alert>
+        <el-alert class="alert-todo-inner" v-show="isAlertShowOver" title="ToDo名を３０字以内にしてください" type="error" show-icon></el-alert>
+        <el-alert class="alert-todo-inner" v-show="isAlertShowSame" title="入力したToDo名はすでに存在しています" type="error" show-icon></el-alert>
         </div>
 
       </el-form>
     </div>
 
     <div>
-      <div v-if="(this.list.TodoItem.length === 0)">
-        <el-alert title="登録されたToDoはございません" type="error"></el-alert>
+      <div v-if="list.TodoItem.length !== 0">
+        <div v-for="(item,index) in list.TodoItem" v-bind:key="index"  class="todo-item">
+          <el-card class="box-card" shadow="hover">
+            <div slot="header" class="clearfix">
+              <span>{{item.TodoTitle}}</span>
+              <i class="el-icon-delete" style="float: right; cursor:pointer" autofocus="true" v-on:click="deleteTodoitem(item)"></i>
+            </div>
+            <el-button :type="item.isDone?'primary':'danger'" round v-on:click="changeButton(item)" style="float:right">{{item.isDone?'完了':'未完了'}}</el-button>
+            <div class="text item">
+              <p>期限：{{getDate(item.TodoDDL)}}</p>
+              <p>作成日：{{getDate(item.TodoCreateData)}}</p>
+            </div>
+          </el-card>
+        </div>
       </div>
-      <div v-else v-for="(item,index) in list.TodoItem" v-bind:key="index"  class="todo-item">
-        <el-card class="box-card" shadow="hover">
-          <div slot="header" class="clearfix">
-            <span>{{item.TodoTitle}}</span>
-            <i class="el-icon-delete" style="float: right; cursor:pointer" autofocus="true" v-on:click="deleteTodoitem(item)"></i>
-          </div>
-          <el-button :type="item.isDone?'primary':'danger'" round v-on:click="changeButton(item)" style="float:right">{{item.isDone?'完了':'未完了'}}</el-button>
-          <div class="text item">
-            <p>期限：{{getDate(item.TodoDDL)}}</p>
-            <p>作成日：{{getDate(item.TodoCreateData)}}</p>
-          </div>
-        </el-card>
+      <div v-else>
+        <el-alert title="登録されたToDoはございません" type="error"></el-alert>
       </div>
     </div>
   </div>
@@ -51,7 +53,6 @@
 
 <script>
 import moment from 'moment'
-import Store from '../Store.js'
 import _ from 'lodash'
 import axios from 'axios'
 
@@ -156,6 +157,7 @@ export default {
           .catch(function (error) {
             console.log(error)
           })
+        this.getAllTodoitem()
         this.getAllTodoitem()
 
         this.TodoDDL = ''
