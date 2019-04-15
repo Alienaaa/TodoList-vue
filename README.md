@@ -151,6 +151,17 @@ https://cloud.mongodb.com/
    
 >共有ToDoリストのユーザ名を**public**とする。   
 
+### ルータ設計
+
+* ` / `
+ホームページ　または　ToDoリスト一覧/新しいToDoリストを作成
+
+* `/item`
+ToDo一覧/新しいToDoを作成/ToDo状態変更
+
+* `/search`
+既存ToDoリストとToDoについて検索
+
 ## 開発環境のセットアップ手順
 
 
