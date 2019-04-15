@@ -347,9 +347,6 @@ node index.js
 cd ..
 npm run dev
 
-# serve with hot reload at localhost:8080
-npm run dev
-
 # localhost:8080をオーブンする
 ```
 ## 今後の予定
