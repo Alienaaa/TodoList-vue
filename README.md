@@ -16,7 +16,7 @@ Todoリスト
 ### フレームワーク:
 * フロントエンド
   * vue.js
-    * dependencies
+    * dependencies<br>
           "axios": "^0.18.0",
           "element-ui": "^2.7.0",
           "express": "^4.16.4",
