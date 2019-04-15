@@ -271,21 +271,22 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
       | ユーザ名は既存ユーザに被った場合 | 1001   |このユーザ名はすでに登録されました。| ユーザデータ |
 ### フロントエンドの各ファイル説明 
 * `Todo.vue` 
-  * `sortBycreatedate()`
-  * `sendForm()`
-  * `isInArray(list, keyword)`
-  * `approachingDDL (item)`
-  * `getDate (item)`
-  * `getMostrecentdate (item)`
-  * `isChecked (list) `
-  * `getAllTodolist ()`
-  * `msgFunc (status, msg)`
-  * `userLogin ()`
-  * `userLogout ()`
-  * `userRegister ()`
-  * `getUsername ()`
-  * `clickChangeButton ()`
-  * `deleteTodolist (item)`
+  * `sortBycreatedate()` ToDoリストに登録されたToDoの作成日が新しい順に表示するように、ToDoリストをsortする
+  * `sendForm()`　入力内容をチェック、エラーメッセージを表示/`リストの作成ボタン`を押したら新しいToDoリストを作成する
+  * `isInArray(list, keyword)`既存ToDoリストのうちにすでに入力したリスト名はありますか　をチェック
+  * `approachingDDL (item)`　ToDoリストのうちに、もっとも締め切りの近い日付を取得する
+  * `getDate (item)`　日付フォーマット転換
+  * `jumpTolist (key, item)`　リストの名前をクリックすると、このリストのToDo画面を遷移する
+  * `getMostrecentdate (item)`　ToDoリストのうちに、もっとも作成日の近い日付を取得する
+  * `isChecked (list) `　ToDoリストのうちに、完了したToDoの配列を出力する
+  * `getAllTodolist ()`　データベースから該当ユーザの全てのリストを取得する
+  * `msgFunc (status, msg)`　Alert機能
+  * `userLogin ()`　ユーザログイン
+  * `userLogout ()`　ユーザログアウト
+  * `userRegister ()`　新規ユーザ登録
+  * `getUsername ()`　Session Storageから該当ユーザ名を取得する（なかったら、`public`とする）
+  * `clickChangeButton ()` ログインダイアログから新規登録ダイアログを遷移する
+  * `deleteTodolist (item)`　選定したリストを削除する
   
 ## 開発環境のセットアップ手順
 
