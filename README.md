@@ -21,43 +21,43 @@ VS code
 ### テンプレート
 * webpackに基づく
 
-    |-- build                       // 项目构建相关代码
-    |   |-- build.js
-    |   |-- check-version.js
-    |   |-- dev-client.js
-    |   |-- dev-server.js
-    |   |-- utils.js
-    |   |-- webpack.base.conf.js
-    |   |-- webpack.dev.conf.js
-    |   |-- webpack.prod.conf.js
-    |-- config                      // 项目开发环境配置
-    |   |-- dev.env.js
-    |   |-- index.js                // ここではProxyTableを設定
-    |   |-- prod.env.js
-    |-- dist                        // ビルドしたときに生成先
-    |   |-- static                  // 静的なソースを管理するディレクトリ
-    |   |-- index.html              // エントリーポイント
-    |-- node_modules
-    |-- server                 　　　//サーバーを設定するディレクトリ
-    |   |-- api.js                  //サーバーの起動を設定するファイル
-    |   |-- db.js　　　　　　　　　　  //サーバーの起動を設定するファイル
-    |   |-- index.js                //サーバーの起動を設定するファイル
-    |   |-- node_modules
-    |   |-- package.json
-    |   |-- package-lock.json
-    |-- src                         // フロントエンドのコードを管理するディレクトリ
-    |   |-- assets                  // ソースを管理するディレクトリ
-    |   |-- components              // componentを管理するディレクトリ
-    |   |-- router                  // routerを管理するディレクトリ
-    |   |-- pages                   // pagesを管理するディレクトリ
-    |   |-- App.vue                 // Vue.jsのエントリーポイント
-    |   |-- main.js                 // JavaScriptのエントリーポイント
-    |-- .babelrc
-    |-- .editorconfig
-    |-- .eslintignore               // ESLintチェックしたくないもの設定
-    |-- .eslistrc.js                // ESLint設定ファイル
-    |-- index.html                  // プロジェクトのエントリーポイント
-    |-- package.json                // 项目配置信息
+        |-- build                       // 项目构建相关代码
+        |   |-- build.js
+        |   |-- check-version.js
+        |   |-- dev-client.js
+        |   |-- dev-server.js
+        |   |-- utils.js
+        |   |-- webpack.base.conf.js
+        |   |-- webpack.dev.conf.js
+        |   |-- webpack.prod.conf.js
+        |-- config                      // 项目开发环境配置
+        |   |-- dev.env.js
+        |   |-- index.js                // ここではProxyTableを設定
+        |   |-- prod.env.js
+        |-- dist                        // ビルドしたときに生成先
+        |   |-- static                  // 静的なソースを管理するディレクトリ
+        |   |-- index.html              // エントリーポイント
+        |-- node_modules
+        |-- server                 　　　//サーバーを設定するディレクトリ
+        |   |-- api.js                  //サーバーの起動を設定するファイル
+        |   |-- db.js　　　　　　　　　　  //サーバーの起動を設定するファイル
+        |   |-- index.js                //サーバーの起動を設定するファイル
+        |   |-- node_modules
+        |   |-- package.json
+        |   |-- package-lock.json
+        |-- src                         // フロントエンドのコードを管理するディレクトリ
+        |   |-- assets                  // ソースを管理するディレクトリ
+        |   |-- components              // componentを管理するディレクトリ
+        |   |-- router                  // routerを管理するディレクトリ
+        |   |-- pages                   // pagesを管理するディレクトリ
+        |   |-- App.vue                 // Vue.jsのエントリーポイント
+        |   |-- main.js                 // JavaScriptのエントリーポイント
+        |-- .babelrc
+        |-- .editorconfig
+        |-- .eslintignore               // ESLintチェックしたくないもの設定
+        |-- .eslistrc.js                // ESLint設定ファイル
+        |-- index.html                  // プロジェクトのエントリーポイント
+        |-- package.json                // 项目配置信息
 
 ## 構成と設計
 ### 機能
