@@ -63,6 +63,7 @@ VS code
 ## 構成と設計
 ### 機能
 * 新しいToDoリストを作成する
+
 ![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/createTodolist.gif)
 
 ## 開発環境のセットアップ手順
