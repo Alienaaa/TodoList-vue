@@ -1,11 +1,11 @@
 Todoリスト
 ===
-# 概要
+## 概要
 ソフト名：ToDoリスト
 バージョン：β
 製作者：朱　文佳 (Alien)
 
-# 技術要素
+## 技術要素
 ##言語：
 * frontend: html,css,JavaScript
 * backend: JavaScript
@@ -59,10 +59,10 @@ webpackに基づく
     |-- index.html                  // プロジェクトのエントリーポイント
     |-- package.json                // 项目配置信息
 
-# 構成と設計
+## 構成と設計
 
 
-# 開発環境のセットアップ手順
+## 開発環境のセットアップ手順
 
 
 # todo-list
