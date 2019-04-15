@@ -169,7 +169,10 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
 ### API提供
 #### GET Request
 * `/api/getallTodolist` 該当ユーザのすべてのリストを取得する
-  * 入力：| ユーザ名 | user   | String
+  * 入力
+    * | 内容       | フィールド名  | データ型  |
+      |:---------:|:-----------:|:--------:|  
+      | ユーザ名 | user   | String |
   
 #### POST Request
 
