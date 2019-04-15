@@ -175,7 +175,14 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
       | ユーザ名 | user   | String |
    * 出力
      * `response.data`: 作成日が新しい順にを表示する`ToDoリスト`の配列
-  
+     
+* `/api/getallTodoitem` 該当ユーザが選定されたToDoリストのすべてのToDoを取得する
+  * 入力
+    * | 内容       | フィールド名  | データ型  |
+      |:---------:|:-----------:|:--------:|  
+      | ユーザ名 | user   | String |
+   * 出力
+     * `response.data`: 作成日が新しい順にを表示する`ToDoリスト`の配列
 #### POST Request
 
 ## 開発環境のセットアップ手順
