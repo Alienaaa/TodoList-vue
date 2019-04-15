@@ -148,6 +148,7 @@ https://cloud.mongodb.com/
 | ToDoリスト作成日| listCreateData | Date   |
 | ユーザ名       | user   | String     |　
 | ToDoを格納する配列 | TodoItem | ToDoスキーマ  |
+<br>
 ＊共有ToDoリストのユーザ名を`public`とする。
 
 ## 開発環境のセットアップ手順
