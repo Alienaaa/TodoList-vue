@@ -151,6 +151,8 @@ https://cloud.mongodb.com/
    
 >共有ToDoリストのユーザ名を**public**とする。   
 
+<br>
+
 ### ルータ設計
 
 * ` / `
@@ -161,6 +163,15 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
 
 * `/search`
 既存ToDoリストとToDoについて検索
+
+<br>
+
+### API提供
+#### GET Request
+* `/api/getallTodolist` 該当ユーザのすべてのリストを取得する
+  * 入力：| ユーザ名 | user   | String
+  
+#### POST Request
 
 ## 開発環境のセットアップ手順
 
