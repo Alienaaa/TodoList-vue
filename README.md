@@ -6,10 +6,12 @@ Todoリスト
 * バージョン：β
 * 製作者：朱　文佳 (Alien)
 
-## 技術要素
+## 使用した技術要素
 ### 言語：
-* frontend: html,css,JavaScript
-* backend: JavaScript
+* フロントエンド
+  * html,css,JavaScript
+* サーバサイド
+  * JavaScript
 
 ### フレームワーク:
 * frontend: vue.js
