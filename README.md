@@ -37,11 +37,13 @@ Todoリスト
         "express": "^4.16.4",        //Node.jsのための高速開発フレームワーク
         "mongoose": "^5.4.19"        //mongoDBを操作するためのライブラリ
         ```
-###データベース
-`mongoDB Atlas`
+### データベース
+`mongoDB Atlas`<br>
 https://cloud.mongodb.com/
+
 ### モジュール管理ツール
 `npm`
+
 ### IDE
 `VS code`
 
