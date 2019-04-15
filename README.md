@@ -17,7 +17,7 @@ Todoリスト
 * フロントエンド
   * vue.js
     * dependencies<br>
-    
+    ```
         "axios": "^0.18.0",
         "element-ui": "^2.7.0",
         "express": "^4.16.4",
@@ -31,6 +31,7 @@ Todoリスト
         "vue-router": "^3.0.1",
         "body-parser": "^1.18.3",
         "mongoose": "^5.4.19"
+        ```
        
 * サーバサイド
   * express
