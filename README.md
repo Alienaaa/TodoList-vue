@@ -88,7 +88,7 @@ https://cloud.mongodb.com/
         |-- index.html                  // プロジェクトのエントリーポイント
         |-- package.json                // 项目配置信息
 
-## 構成と設計
+## 全体の設計・構成
 ### 機能
 * `ToDoリスト`一覧表示、新しい`ToDoリスト`を作成する
 
@@ -102,19 +102,19 @@ https://cloud.mongodb.com/
 
 ![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/search.gif)
 
-* ユーザ新規登録
+* [独自]ユーザ新規登録
 
 ![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/Register.gif)
 
-* ユーザログインして、自分に属する`ToDoリスト`や`ToDo`を作成する（状態変更、検索もできる）
+* [独自]ユーザログインして、自分に属する`ToDoリスト`や`ToDo`を作成する（状態変更、検索もできる）
 
 ![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/Login.gif)
 
-* ユーザログアウト、`public`状態を戻る
+* [独自]ユーザログアウト、`public`状態を戻る
 
 ![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/Logout.gif)
 
-* `ToDo`や`ToDoリスト`を削除する
+* [独自]`ToDo`や`ToDoリスト`を削除する
 
 ![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/deleteTodo%26Todolist.gif)
 
