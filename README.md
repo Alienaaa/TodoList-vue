@@ -306,12 +306,9 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   
 ## 開発環境のセットアップ手順
 
+[こちら](https://nodejs.org/ja/)にNode.jsをインストールする
 
 ``` bash
-# Nodeをインストール
-
-# npmをインストール
-
 # リポジトリをローカルへクローンする
 git clone https://github.com/Alienaaa/Todo-list.git
 
@@ -332,5 +329,6 @@ npm run dev
 npm run dev
 
 # localhost:8080をオーブンする
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+```
+## 今後の予定
+* リスト名/ToDo名を編集する機能を実装
