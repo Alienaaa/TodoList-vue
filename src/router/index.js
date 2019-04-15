@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Search from '@/pages/Search'
-import Todo from '@/components/Todo'
+import Todo from '@/pages/Todo'
 import Item from '@/pages/Item'
 
 Vue.use(Router)

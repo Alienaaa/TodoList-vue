@@ -161,7 +161,6 @@ router.get('/api/searchTodoitem', (req, res) => {
 
 // change isDone in Todoitem
 router.post('/api/changeIsdone', (req, res) => {
-  // 通过模型去查找数据库
   // console.log(req.body.keyword)
   db.Todolist.update({id: req.body.id, user: req.body.user, TodoItem: {$elemMatch: {TodoTitle: req.body.TodoTitle}}}, {$set: {'TodoItem.$.isDone': (!req.body.isDone)}}, (err, data) => {
     if (err) {

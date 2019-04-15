@@ -38,14 +38,6 @@
         <el-alert class="alert-search" v-else type="success" :closable="false">ToDoリストが{{this.numOfList}}件見つかりました</el-alert>
       </div>
 
-    <!--
-    <ul>
-      <li v-for="(item,index) in resultForTodoList" v-bind:key=index>
-        <p v-on:click="jumpTolist(item)">{{item.title}}</p>
-      </li>
-    </ul>
-    -->
-
     <div v-for="item in resultForTodoList" v-bind:key="item.id"  class="todo-list">
         <el-card class="box-card" shadow="hover">
           <div slot="header" class="clearfix">
