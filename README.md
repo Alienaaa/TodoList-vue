@@ -332,3 +332,6 @@ npm run dev
 ```
 ## 今後の予定
 * リスト名/ToDo名を編集する機能を実装
+## 動作確認URL
+>Supportted by [Heroku](https://www.heroku.com/)
+https://todolist-alien.herokuapp.com/
