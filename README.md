@@ -1,25 +1,25 @@
 Todoリスト
 ===
 ## 概要
-ソフト名：ToDoリスト
-バージョン：β
-製作者：朱　文佳 (Alien)
+* ソフト名：ToDoリスト
+* バージョン：β
+* 製作者：朱　文佳 (Alien)
 
 ## 技術要素
-##言語：
+### 言語：
 * frontend: html,css,JavaScript
 * backend: JavaScript
 
-##フレームワーク:
+### フレームワーク:
 * frontend: vue.js
 * backend:  express
-##モジュール管理ツール
+### モジュール管理ツール
 npm
-##IDE
+### IDE
 VS code
 
-##テンプレート
-webpackに基づく
+### テンプレート
+* webpackに基づく
 
     |-- build                       // 项目构建相关代码
     |   |-- build.js
@@ -60,7 +60,9 @@ webpackに基づく
     |-- package.json                // 项目配置信息
 
 ## 構成と設計
-
+### 機能
+* 新しいToDoリストを作成する
+![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/createTodolist.gif)
 
 ## 開発環境のセットアップ手順
 
