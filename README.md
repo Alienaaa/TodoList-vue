@@ -180,9 +180,37 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|  
+      | TodoリストID | id   | Number |
       | ユーザ名 | user   | String |
    * 出力
-     * `response.data`: 作成日が新しい順にを表示する`ToDoリスト`の配列
+     * `response.data[0]`: 作成日が新しい順にを表示する`ToDo`の配列
+     
+* `/api/searchTodolist` 該当ユーザのkeywordを含まれているToDoリストを取得する
+  * 入力
+    * | 内容       | フィールド名  | データ型  |
+      |:---------:|:-----------:|:--------:|  
+      | キーワード | keyword   | String |
+      | ユーザ名 | user   | String |
+   * 出力
+     * `response.data`: 作成日が新しい順にを表示する keywordを含まれている`ToDoリスト`の配列
+     
+* `/api/searchTodoitem` 該当ユーザのkeywordを含まれているToDoを取得する
+  * 入力
+    * | 内容       | フィールド名  | データ型  |
+      |:---------:|:-----------:|:--------:|  
+      | キーワード | keyword   | String |
+      | ユーザ名 | user   | String |
+   * 出力
+     * `response.data`: 作成日が新しい順にを表示する keywordを含まれている`ToDo`の配列
+     
+* `/api/login` ユーザ認証は成功するかどうかを確認する
+  * 入力
+    * | 内容       | フィールド名  | データ型  |
+      |:---------:|:-----------:|:--------:|  
+      | ユーザ | keyword   | String |
+      | ユーザ名 | user   | String |
+   * 出力
+     * `response.data`: 作成日が新しい順にを表示する keywordを含まれている`ToDo`の配列
 #### POST Request
 
 ## 開発環境のセットアップ手順
