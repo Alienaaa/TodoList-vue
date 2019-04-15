@@ -272,7 +272,7 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
 ### フロントエンドの各ファイル説明 
 * `Todo.vue` 
   * `sortBycreatedate()` ToDoリストに登録されたToDoの作成日が新しい順に表示するように、ToDoリストをsortする
-  * `sendForm()`　入力内容をチェック、エラーメッセージを表示/`リストの作成ボタン`を押したら新しいToDoリストを作成する
+  * `sendForm()`　入力内容をチェック、エラーメッセージを表示/`リストの作成`ボタンを押したら新しいToDoリストを作成する
   * `isInArray(list, keyword)`既存ToDoリストのうちにすでに入力したリスト名はありますか　をチェック
   * `approachingDDL (item)`　ToDoリストのうちに、もっとも締め切りの近い日付を取得する
   * `getDate (item)`　日付フォーマット転換
@@ -288,36 +288,49 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * `clickChangeButton ()` ログインダイアログから新規登録ダイアログを遷移する
   * `deleteTodolist (item)`　選定したリストを削除する
   
+* `Item.vue` 
+  * `getTitle()` 該当ToDoが属するリストの名前を取得する
+  * `sendForm()`　入力内容をチェック、エラーメッセージを表示/`ToDoの追加`ボタンを押したら新しいToDoを作成する
+  * `isInArray (list, keyword)`　既存ToDoのうちにすでに入力したToDo名はありますか　をチェック
+  * `getDate (item)`　日付フォーマット転換
+  * `changeButton (item)`　ボタンを押したら該当ToDoの`完了/未完了`状態を変更する
+  * `htmlEscape (str)`　**廃棄**  v-textで出力なので、エスケープ処理は必要ない
+  * `getAllTodoitem ()` データベースから該当ユーザが選定したリストの全てのリストを取得する
+  * `deleteTodoitem (item)`　選定したToDoを削除する
+
+* `Search.vue` 
+  * `searchTodo (lists, keyword)` キーワードを含まれているToDoリストとToDoを検索する
+  * `jumpTolist(item)`　リストとToDoの名前をクリックすると、このリストのToDo画面を遷移する
+  * `getDate (item)`　日付フォーマット転換
+  * `getTitle(item)`　**廃棄**　該当ToDoが属するリストの名前を取得する
+  
 ## 開発環境のセットアップ手順
 
 
-# todo-list
-
-> A Vue.js project
-
-## Build Setup
-
 ``` bash
-# install dependencies
+# Nodeをインストール
+
+# npmをインストール
+
+# リポジトリをローカルへクローンする
+git clone https://github.com/Alienaaa/Todo-list.git
+
+cd Todo-list
+
+# 必要なパッケージをインストールする
 npm install
+
+# サーバーを起動する(localhost:3000)
+cd server
+node index.js
+
+# クライアントサードを起動
+cd ..
+npm run dev
 
 # serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
+# localhost:8080をオーブンする
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
