@@ -149,7 +149,7 @@ https://cloud.mongodb.com/
 | ユーザ名       | user   | String     |　
 | ToDoを格納する配列 | TodoItem | ToDoスキーマ  |
 <br>   
-    共有ToDoリストのユーザ名をpublicとする。   
+    >共有ToDoリストのユーザ名をpublicとする。   
 <br>
 
 ## 開発環境のセットアップ手順
