@@ -48,7 +48,7 @@ https://cloud.mongodb.com/
 `VS code`
 
 ### テンプレート
-* webpackに基づく
+* `Vue-cli`+`webpack`に基づく
 
         |-- build                       // ビルドに関するディレクトリ
         |   |-- build.js
@@ -269,6 +269,23 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
       |:---------:|:-----------:|:--------:|:--------:|  
       | 登録成功の場合 | 1000   | ユーザログアップ成功です。|被ったユーザデータ |
       | ユーザ名は既存ユーザに被った場合 | 1001   |このユーザ名はすでに登録されました。| ユーザデータ |
+### フロントエンドの各ファイル説明 
+* `Todo.vue` 
+  * `sortBycreatedate()`
+  * `sendForm()`
+  * `isInArray(list, keyword)`
+  * `approachingDDL (item)`
+  * `getDate (item)`
+  * `getMostrecentdate (item)`
+  * `isChecked (list) `
+  * `getAllTodolist ()`
+  * `msgFunc (status, msg)`
+  * `userLogin ()`
+  * `userLogout ()`
+  * `userRegister ()`
+  * `getUsername ()`
+  * `clickChangeButton ()`
+  * `deleteTodolist (item)`
   
 ## 開発環境のセットアップ手順
 
