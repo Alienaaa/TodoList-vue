@@ -15,29 +15,35 @@ Todoリスト
 
 ### フレームワーク:
 * フロントエンド
-  * vue.js
+  * `Vue.js`
     * dependencies<br>
         ```
-        "axios": "^0.18.0",
-        "element-ui": "^2.7.0",
-        "express": "^4.16.4",
-        "lodash": "^4.17.11",
-        "moment": "^2.24.0",
+        "axios": "^0.18.0",　　　　　　// HTTP通信フレームワーク
+        "element-ui": "^2.7.0",       // UI フレームワーク
+        "lodash": "^4.17.11",         // 便利な関数をまとめて提供しているフレームワーク
+        "moment": "^2.24.0",          //日付処理フレームワーク
         "node-sass": "^4.11.0",
         "sass": "^1.17.3",
         "sass-loader": "^7.1.0",
         "scss": "^0.2.4",
         "vue": "^2.5.2",
-        "vue-router": "^3.0.1",
-        "body-parser": "^1.18.3",
-        "mongoose": "^5.4.19"
+        "vue-router": "^3.0.1",　　　 //公式ルータフレームワーク
         ```     
 * サーバサイド
-  * express
+  * `Node.js`
+    * dependencies<br>
+        ```
+        "body-parser": "^1.18.3",    //POSTデータを処理するモジュール
+        "express": "^4.16.4",        //Node.jsのための高速開発フレームワーク
+        "mongoose": "^5.4.19"        //mongoDBを操作するためのライブラリ
+        ```
+###データベース
+`mongoDB Atlas`
+https://cloud.mongodb.com/
 ### モジュール管理ツール
-npm
+`npm`
 ### IDE
-VS code
+`VS code`
 
 ### テンプレート
 * webpackに基づく
