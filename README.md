@@ -212,11 +212,64 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
    * 出力
      *  |        | status  | msg  | data
         |:---------:|:-----------:|:--------:|:--------:|  
-        | 認証成功の場合 | 1000   | ユーザデータ |
-        | ユーザ名は登録されてない場合 | 1002   | null |
-        | パスワードは誤りがある場合 | 1001   | null |
+        | 認証成功の場合 | 1000   | ユーザ認証成功です。|ユーザデータ |
+        | ユーザ名は登録されてない場合 | 1002   |ユーザ登録されてません。| null |
+        | パスワードは誤りがある場合 | 1001   |パスワードの入力に誤りがあります。| null |
+<br>
 #### POST Request
-
+* `/api/createTodolist` 該当ユーザの新しいToDoリストを作成する
+  * 入力
+    * | 内容       | フィールド名  | データ型  |
+      |:---------:|:-----------:|:--------:|  
+      | TodoリストID | id         | Number |
+      | ToDoリスト名 | title        | String   |
+      | ToDoリスト作成日| listCreateData | Date   |
+      | ユーザ名       | user   | String     |　
+      | ToDoを格納する配列 | TodoItem | ToDoを格納する配列  |
+* `/api/createTodoitem` 該当ユーザが選定したToDoリストで、新しいToDoを作成する
+  * 入力
+    * | 内容       | フィールド名  | データ型  |
+      |:---------:|:-----------:|:--------:|  
+      | TodoリストID | id         | Number |
+      | ToDoリスト名    | title        | String   |
+      | ToDo名     | TodoTitle | String     |
+      | 期限       | TodoDDL   | Date     |
+      | ToDo作成日 | TodoCreateData | Date  |
+      | 完了/未完了 | isDone | Boolean  |
+* `/api/deleteTodolist` 該当ユーザが選定したToDoリストを削除する
+  * 入力
+    * | 内容       | フィールド名  | データ型  |
+      |:---------:|:-----------:|:--------:|  
+      | TodoリストID | id         | Number |
+      | ユーザ名       | user   | String     |
+      
+* `/api/deleteTodoitem` 該当ユーザが選定したToDoリストのToDoを削除する
+  * 入力
+    * | 内容       | フィールド名  | データ型  |
+      |:---------:|:-----------:|:--------:|  
+      | TodoリストID | id         | Number |
+      | ユーザ名       | user   | String     |
+      | ToDo名     | TodoTitle | String     |
+* `/api/changeIsdone` 該当ユーザが選定したToDoリストのToDoの`完了/未完了`変更する
+  * 入力
+    * | 内容       | フィールド名  | データ型  |
+      |:---------:|:-----------:|:--------:|  
+      | TodoリストID | id         | Number |
+      | ユーザ名       | user   | String     |
+      | ToDo名     | TodoTitle | String     |
+      | 完了/未完了 | isDone | Boolean  |
+* `/api/logup` 新規ユーザ登録
+  * 入力
+    * | 内容       | フィールド名  | データ型  |
+      |:---------:|:-----------:|:--------:|  
+      | ユーザ名 | name   | String |
+      | パスワード | pass   | String |
+  * 出力
+    * |        | status  | msg  | data
+      |:---------:|:-----------:|:--------:|:--------:|  
+      | 登録成功の場合 | 1000   | ユーザログアップ成功です。|被ったユーザデータ |
+      | ユーザ名は既存ユーザに被った場合 | 1001   |このユーザ名はすでに登録されました。| ユーザデータ |
+  
 ## 開発環境のセットアップ手順
 
 
