@@ -62,9 +62,34 @@ VS code
 
 ## 構成と設計
 ### 機能
-* 新しいToDoリストを作成する
+* `ToDoリスト`一覧表示、新しい`ToDoリスト`を作成する
 
 ![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/createTodolist.gif)
+
+* `ToDo`一覧表示、新しい`ToDo`を作成して、`完了/未完了`の状態を変更する
+
+![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/createTodo.gif)
+
+* 登録された`ToDo`や`ToDoリスト`について検索する
+
+![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/search.gif)
+
+* ユーザ新規登録
+
+![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/Register.gif)
+
+* ユーザログインして、自分に属する`ToDoリスト`や`ToDo`を作成する（状態変更、検索もできる）
+
+![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/Login.gif)
+
+* ユーザログアウト、`public`状態を戻る
+
+![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/Logout.gif)
+
+* `ToDo`や`ToDoリスト`を削除する
+
+![image](https://github.com/Alienaaa/Todo-list/blob/master/ReadMe_img/deleteTodo%26Todolist.gif)
+
 
 ## 開発環境のセットアップ手順
 
