@@ -9,13 +9,15 @@ Todoリスト
 ## 使用した技術要素
 ### 言語：
 * フロントエンド
-  * html,css,JavaScript
+  * `HTML`,`CSS`,`JavaScript`
 * サーバサイド
-  * JavaScript
+  * `JavaScript`
 
 ### フレームワーク:
-* frontend: vue.js
-* backend:  express
+* フロントエンド
+  * vue.js
+* サーバサイド
+  * express
 ### モジュール管理ツール
 npm
 ### IDE
