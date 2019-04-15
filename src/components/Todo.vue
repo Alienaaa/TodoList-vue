@@ -22,7 +22,7 @@
             <el-input v-model="login.name" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="パスワード" :label-width="formLabelWidth">
-            <el-input v-model="login.pass" autocomplete="off"></el-input>
+            <el-input v-model="login.pass" autocomplete="off" type="password"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -44,7 +44,7 @@
             <el-input v-model="register.name" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="パスワード" :label-width="formLabelWidth">
-            <el-input v-model="register.pass" autocomplete="off"></el-input>
+            <el-input v-model="register.pass" autocomplete="off" type="password"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -244,7 +244,8 @@ export default {
     approachingDDL (item) {
       if (item.TodoItem.length !== 0) {
         var TodoItem = item.TodoItem
-        var ApproachingDDL = moment('2030-1-1')
+        var ApproachingDDL = moment('2030-01-01')
+        console.log(ApproachingDDL)
         for (var i = 0; i < TodoItem.length; i++) {
           if ((moment().isBefore(TodoItem[i].TodoDDL) || moment().isSame(TodoItem[i].TodoDDL)) && (TodoItem[i].isDone === false)) {
             if (moment(TodoItem[i].TodoDDL).isBefore(ApproachingDDL)) {
@@ -258,6 +259,7 @@ export default {
       }
     },
     getDate (item) {
+      console.log(item)
       return moment(item).format('LL')
     },
     jumpTolist (key, item) {

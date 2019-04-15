@@ -189,6 +189,7 @@ export default {
           console.log(error)
         })
       this.getAllTodoitem()
+      this.getAllTodoitem()
     },
     htmlEscape (str) {
       if (!str) return
@@ -229,12 +230,14 @@ export default {
         cancelButtonText: 'いいえ',
         type: 'warning'
       }).then(() => {
-        axios.post('/api/deleteTodoitem', {id: item.id, user: this.$route.query.user, Todotitle: item.TodoTitle})
+        axios.post('/api/deleteTodoitem', {id: item.id, user: this.$route.query.user, TodoTitle: item.TodoTitle})
           .then(function (response) {
             _this.$message({
               type: 'success',
               message: '削除成功!'
             })
+            console.log(item.TodoTitle)
+            _this.getAllTodoitem()
             _this.getAllTodoitem()
             console.log(response)
           })

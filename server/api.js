@@ -3,7 +3,7 @@ const db = require('./db')
 const express = require('express')
 const router = express.Router()
 
-/** ************ APIs **************/
+/** ************ API **************/
 
 // create new Todolist
 router.post('/api/createTodolist', (req, res) => {
@@ -107,14 +107,15 @@ router.post('/api/deleteTodoitem', (req, res) => {
     {
       $pull: {
         TodoItem: {
-          Todotitle: req.body.TodoTitle
+          TodoTitle: req.body.TodoTitle
         }
       }
     }, (err, data) => {
       if (err) {
         res.send(err)
       } else {
-        res.json('delete succussfully')
+        res.json(data)
+        console.log(data)
       }
     })
 })
