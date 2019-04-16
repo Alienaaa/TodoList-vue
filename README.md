@@ -154,7 +154,7 @@ https://cloud.mongodb.com/
 
 | 内容       | フィールド名  | データ型  |
 |:---------:|:-----------:|:--------:|
-| TodoリストID | id         | Number |
+| TodoリストID | _id       | ObjectId |
 | ToDoリスト名    | title        | String   |
 | ToDo名     | TodoTitle | String     |
 | 期限       | TodoDDL   | Date     |
@@ -165,7 +165,7 @@ https://cloud.mongodb.com/
 
 | 内容       | フィールド名  | データ型  |
 |:---------:|:-----------:|:--------:|
-| TodoリストID | id         | Number |
+| TodoリストID | _id          | ObjectId |
 | ToDoリスト名 | title        | String   |
 | ToDoリスト作成日| listCreateData | Date   |
 | ユーザ名       | user   | String     |　
@@ -202,7 +202,7 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|
-      | TodoリストID | id   | Number |
+      | TodoリストID | _id   | ObjectId |
       | ユーザ名 | user   | String |
    * 出力
      * `response.data[0]`: 作成日が新しい順にを表示する`ToDo`の配列
@@ -243,7 +243,7 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|
-      | TodoリストID | id         | Number |
+      | TodoリストID | _id         | ObjectId |
       | ToDoリスト名 | title        | String   |
       | ToDoリスト作成日| listCreateData | Date   |
       | ユーザ名       | user   | String     |　
@@ -252,7 +252,7 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|
-      | TodoリストID | id         | Number |
+      | TodoリストID | _id         | ObjectId |
       | ToDoリスト名    | title        | String   |
       | ToDo名     | TodoTitle | String     |
       | 期限       | TodoDDL   | Date     |
@@ -262,21 +262,21 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|
-      | TodoリストID | id         | Number |
+      | TodoリストID | _id         | ObjectId |
       | ユーザ名       | user   | String     |
 
 * `/api/deleteTodoitem` 該当ユーザが選定したToDoリストのToDoを削除する
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|
-      | TodoリストID | id         | Number |
+      | TodoリストID | _id         | ObjectId |
       | ユーザ名       | user   | String     |
       | ToDo名     | TodoTitle | String     |
 * `/api/changeIsdone` 該当ユーザが選定したToDoリストのToDoの`完了/未完了`変更する
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|
-      | TodoリストID | id         | Number |
+      | TodoリストID | _id         | ObjectId |
       | ユーザ名       | user   | String     |
       | ToDo名     | TodoTitle | String     |
       | 完了/未完了 | isDone | Boolean  |
@@ -292,7 +292,14 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
       | 登録成功の場合 | 1000   | ユーザログアップ成功です。|被ったユーザデータ |
       | ユーザ名は既存ユーザに被った場合 | 1001   |このユーザ名はすでに登録されました。| ユーザデータ |
 ### フロントエンドの各ファイル説明
-* `Todo.vue`
+* `main.vue`
+  * JavaScriptのエントリーポイント
+* `App.vue`
+  * Vue.jsのエントリーポイント
+  * 共通ヘッダーとrouter-viewはここで設定
+* `router/index.js`
+  * ルータを設定
+* `pages/Todo.vue`
   * `sortBycreatedate()` ToDoリストに登録されたToDoの作成日が新しい順に表示するように、ToDoリストをsortする
   * `sendForm()`　入力内容をチェック、エラーメッセージを表示/`リストの作成`ボタンを押したら新しいToDoリストを作成する
   * `isInArray(list, keyword)`既存ToDoリストのうちにすでに入力したリスト名はありますか　をチェック
@@ -310,7 +317,7 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * `clickChangeButton ()` ログインダイアログから新規登録ダイアログを遷移する
   * `deleteTodolist (item)`　選定したリストを削除する
 
-* `Item.vue`
+* `pages/Item.vue`
   * `getTitle()` 該当ToDoが属するリストの名前を取得する
   * `sendForm()`　入力内容をチェック、エラーメッセージを表示/`ToDoの追加`ボタンを押したら新しいToDoを作成する
   * `isInArray (list, keyword)`　既存ToDoのうちにすでに入力したToDo名はありますか　をチェック
@@ -320,7 +327,7 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * `getAllTodoitem ()` データベースから該当ユーザが選定したリストの全てのリストを取得する
   * `deleteTodoitem (item)`　選定したToDoを削除する
 
-* `Search.vue`
+* `pages/Search.vue`
   * `searchTodo (lists, keyword)` キーワードを含まれているToDoリストとToDoを検索する
   * `jumpTolist(item)`　リストとToDoの名前をクリックすると、このリストのToDo画面を遷移する
   * `getDate (item)`　日付フォーマット転換
@@ -351,6 +358,8 @@ npm run dev
 ```
 ## 今後の予定
 * リスト名/ToDo名を編集する機能を実装
+* Inputとボタンの様式適応性調整
+* 締め切り前日の提示機能を作る
 ## 動作確認URL
 >Supported by [Heroku](https://www.heroku.com/)<br>
 https://todolist-alien.herokuapp.com/
