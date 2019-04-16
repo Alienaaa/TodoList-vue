@@ -154,7 +154,7 @@ https://cloud.mongodb.com/
 
 | 内容       | フィールド名  | データ型  |
 |:---------:|:-----------:|:--------:|
-| TodoリストID | id         | Number |
+| TodoリストID | `_id`       | Number |
 | ToDoリスト名    | title        | String   |
 | ToDo名     | TodoTitle | String     |
 | 期限       | TodoDDL   | Date     |
