@@ -358,6 +358,8 @@ npm run dev
 ```
 ## 今後の予定
 * リスト名/ToDo名を編集する機能を実装
+* Inputとボタンの様式適応性調整
+* 締め切り前日の提示機能を作る
 ## 動作確認URL
 >Supported by [Heroku](https://www.heroku.com/)<br>
 https://todolist-alien.herokuapp.com/
