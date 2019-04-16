@@ -75,7 +75,7 @@ router.get('/api/getallTodolist', (req, res) => {
 // Get all Todoitem
 router.get('/api/getallTodoitem', (req, res) => {
   // find data by Model
-  db.Todolist.find({_id: req.query._id, user: req.query.user}, (err, data) => {
+  db.Todolist.find({_id: req.query._id, user: req.query.user}, null, {sort: {_id: -1}}, (err, data) => {
     console.log(req.query)
     if (err) {
       res.send(err)
