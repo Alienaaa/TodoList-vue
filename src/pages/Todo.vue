@@ -216,7 +216,7 @@ export default {
       // console.log(username)
       if (checkList) {
         var item = {
-          id: this.nextID,
+          // id: this.nextID,
           title: this.titleText,
           listCreateData: new Date(),
           TodoItem: [],
@@ -256,7 +256,9 @@ export default {
             }
           }
         }
-        if (ApproachingDDL.isSame(moment('2030-01-01'))) {
+        console.log(ApproachingDDL)
+        console.log(moment('2030-01-01'))
+        if (moment('2030-01-01').isSame(ApproachingDDL)) {
           return -2
         } else {
           console.log('0')
@@ -274,12 +276,12 @@ export default {
       // console.log(key)
       // console.log(item.id)
       // console.log(this.lists[item.id].title)
+      console.log(item._id)
       var _this = this
-      console.log(item.title)
       this.$router.push({
-        path: '/item',
-        query: {
-          id: item.id,
+        name: 'Item',
+        params: {
+          _id: item._id,
           user: _this.username,
           title: item.title
         }
@@ -431,7 +433,7 @@ export default {
         cancelButtonText: 'いいえ',
         type: 'warning'
       }).then(() => {
-        axios.post('/api/deleteTodolist', {id: item.id, user: _this.username})
+        axios.post('/api/deleteTodolist', {_id: item._id, user: _this.username})
           .then(function (response) {
             _this.$message({
               type: 'success',

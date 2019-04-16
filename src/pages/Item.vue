@@ -88,7 +88,7 @@ export default {
       return this.list.title
     },
     sendForm () {
-      var _this = this
+      // var _this = this
       // this.list = this.lists[this.$route.query.id]
       // console.log(this.list.TodoItem)
       if (!this.list.TodoItem) {
@@ -135,13 +135,13 @@ export default {
           this.isAlertShowDDL = false
         }
       }
-      console.log(this.$route.query.title)
+      console.log(this.$route.params.title)
       checkDDL = (!this.isAlertShowDDL2) && (!this.isAlertShowDDL)
       if (checkTodo && checkDDL) {
         var item = {
-          user: this.$route.query.user,
-          id: this.list.id,
-          title: _this.$route.query.title,
+          user: this.$route.params.user,
+          _id: this.list._id,
+          title: this.$route.params.title,
           TodoTitle: this.TodoTitle,
           TodoDDL: this.TodoDDL,
           TodoCreateData: new Date(),
@@ -176,10 +176,10 @@ export default {
       // item.isDone = !item.isDone
       // console.log(item.isDone)
       var change = {
-        id: item.id,
+        _id: item._id,
         TodoTitle: item.TodoTitle,
         isDone: item.isDone,
-        user: this.$route.query.user
+        user: this.$route.params.user
       }
       axios.post('/api/changeIsdone', change)
         .then(function (response) {
@@ -208,15 +208,16 @@ export default {
     getAllTodoitem () {
       var _this = this
       // var item = {id: 0}
+      console.log(_this.$route.meta)
       axios.get('/api/getallTodoitem', {
         params: {
-          id: this.$route.query.id,
-          user: this.$route.query.user
+          _id: _this.$route.params._id,
+          user: _this.$route.params.user
         }
       })
         .then(function (response) {
           _this.list = response.data[0]
-          console.log('success')
+          // console.log('success')
           console.log(response.data)
         })
         .catch(function (error) {
@@ -230,7 +231,7 @@ export default {
         cancelButtonText: 'いいえ',
         type: 'warning'
       }).then(() => {
-        axios.post('/api/deleteTodoitem', {id: item.id, user: this.$route.query.user, TodoTitle: item.TodoTitle})
+        axios.post('/api/deleteTodoitem', {_id: item._id, user: this.$route.params.user, TodoTitle: item.TodoTitle})
           .then(function (response) {
             _this.$message({
               type: 'success',

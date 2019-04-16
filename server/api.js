@@ -8,7 +8,7 @@ const router = express.Router()
 // create new Todolist
 router.post('/api/createTodolist', (req, res) => {
   var newTodolist = new db.Todolist({
-    id: req.body.id,
+    // id: req.body.id,
     title: req.body.title,
     listCreateData: req.body.listCreateData,
     user: req.body.user,
@@ -31,7 +31,7 @@ router.post('/api/createTodolist', (req, res) => {
 router.post('/api/createTodoitem', (req, res) => {
   console.log('title' + req.body.title)
   var newTodoitem = new db.Todoitem({
-    id: req.body.id,
+    _id: req.body._id,
     title: req.body.title,
     TodoTitle: req.body.TodoTitle,
     TodoDDL: req.body.TodoDDL,
@@ -42,7 +42,7 @@ router.post('/api/createTodoitem', (req, res) => {
 
   // update todolist
   db.Todolist.update(
-    {id: req.body.id, user: req.body.user},
+    {_id: req.body._id, user: req.body.user},
     {
       $push: {
         TodoItem: {
@@ -75,23 +75,23 @@ router.get('/api/getallTodolist', (req, res) => {
 // Get all Todoitem
 router.get('/api/getallTodoitem', (req, res) => {
   // find data by Model
-  db.Todolist.find({id: req.query.id, user: req.query.user}, (err, data) => {
+  db.Todolist.find({_id: req.query._id, user: req.query.user}, (err, data) => {
     console.log(req.query)
     if (err) {
       res.send(err)
     } else {
       res.json(data)
       console.log(data)
-      console.log(req.query.id)
+      console.log(req.query._id)
     }
   })
 })
 
 // delete Todolist
 router.post('/api/deleteTodolist', (req, res) => {
-  console.log(req.body.id)
+  console.log(req.body._id)
   // delete item
-  db.Todolist.deleteOne({id: req.body.id, user: req.body.user}, (err, data) => {
+  db.Todolist.deleteOne({_id: req.body._id, user: req.body.user}, (err, data) => {
     if (err) {
       res.send(err)
     } else {
@@ -103,7 +103,7 @@ router.post('/api/deleteTodolist', (req, res) => {
 // delete Todoitem
 router.post('/api/deleteTodoitem', (req, res) => {
   db.Todolist.update(
-    {id: req.body.id, user: req.body.user},
+    {_id: req.body._id, user: req.body.user},
     {
       $pull: {
         TodoItem: {
@@ -144,7 +144,7 @@ router.get('/api/searchTodoitem', (req, res) => {
     {$match: {'TodoItem.TodoTitle': {$regex: keyword}, user: req.query.user}},
     {$sort: {'TodoItem._id': -1}},
     {$project: {
-      id: '$TodoItem.id',
+      // id: '$TodoItem.id',
       title: '$TodoItem.title',
       TodoTitle: '$TodoItem.TodoTitle',
       TodoDDL: '$TodoItem.TodoDDL',
@@ -162,7 +162,7 @@ router.get('/api/searchTodoitem', (req, res) => {
 // change isDone in Todoitem
 router.post('/api/changeIsdone', (req, res) => {
   // console.log(req.body.keyword)
-  db.Todolist.update({id: req.body.id, user: req.body.user, TodoItem: {$elemMatch: {TodoTitle: req.body.TodoTitle}}}, {$set: {'TodoItem.$.isDone': (!req.body.isDone)}}, (err, data) => {
+  db.Todolist.update({_id: req.body._id, user: req.body.user, TodoItem: {$elemMatch: {TodoTitle: req.body.TodoTitle}}}, {$set: {'TodoItem.$.isDone': (!req.body.isDone)}}, (err, data) => {
     if (err) {
       res.send(err)
     } else {

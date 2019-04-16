@@ -38,11 +38,10 @@
         <el-alert class="alert-search" v-else type="success" :closable="false">ToDoリストが{{this.numOfList}}件見つかりました</el-alert>
       </div>
 
-    <div v-for="item in resultForTodoList" v-bind:key="item.id"  class="todo-list">
+    <div v-for="(item,index) in resultForTodoList" v-bind:key="index"  class="todo-list">
         <el-card class="box-card" shadow="hover">
           <div slot="header" class="clearfix">
             <span class="todolist-title"  v-on:click="jumpTolist(item)">{{item.title}}</span>
-            <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
           </div>
           <div class="text item" style="float:right">
             <p>作成日：{{getDate(item.listCreateData)}}</p>
@@ -152,9 +151,10 @@ export default {
     jumpTolist(item) {
       var _this = this
       this.$router.push({
-          path: '/item',
-          query: {
-            id: item.id,
+          name: 'Item',
+          params: {
+            _id: item._id,
+            title: item.title,
             user: _this.username
             // list: item.title
           }
@@ -171,7 +171,7 @@ export default {
       console.log(_this.isGettitle)
       axios.get('/api/getallTodoitem', {
         params: {
-          id: item.id,
+          _id: item._id,
           user: _this.username
         }
       })

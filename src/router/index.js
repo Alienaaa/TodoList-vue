@@ -19,7 +19,7 @@ export default new Router({
       component: Search
     },
     {
-      path: '/item',
+      path: '/item/:user/:title',
       name: 'Item',
       component: Item
     }
