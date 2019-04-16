@@ -154,7 +154,7 @@ https://cloud.mongodb.com/
 
 | 内容       | フィールド名  | データ型  |
 |:---------:|:-----------:|:--------:|
-| TodoリストID | `_id`       | Number |
+| TodoリストID | _id       | ObjectId |
 | ToDoリスト名    | title        | String   |
 | ToDo名     | TodoTitle | String     |
 | 期限       | TodoDDL   | Date     |
@@ -165,7 +165,7 @@ https://cloud.mongodb.com/
 
 | 内容       | フィールド名  | データ型  |
 |:---------:|:-----------:|:--------:|
-| TodoリストID | id         | Number |
+| TodoリストID | _id          | ObjectId |
 | ToDoリスト名 | title        | String   |
 | ToDoリスト作成日| listCreateData | Date   |
 | ユーザ名       | user   | String     |　
@@ -202,7 +202,7 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|
-      | TodoリストID | id   | Number |
+      | TodoリストID | _id   | ObjectId |
       | ユーザ名 | user   | String |
    * 出力
      * `response.data[0]`: 作成日が新しい順にを表示する`ToDo`の配列
@@ -243,7 +243,7 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|
-      | TodoリストID | id         | Number |
+      | TodoリストID | _id         | ObjectId |
       | ToDoリスト名 | title        | String   |
       | ToDoリスト作成日| listCreateData | Date   |
       | ユーザ名       | user   | String     |　
@@ -252,7 +252,7 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|
-      | TodoリストID | id         | Number |
+      | TodoリストID | _id         | ObjectId |
       | ToDoリスト名    | title        | String   |
       | ToDo名     | TodoTitle | String     |
       | 期限       | TodoDDL   | Date     |
@@ -262,21 +262,21 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|
-      | TodoリストID | id         | Number |
+      | TodoリストID | _id         | ObjectId |
       | ユーザ名       | user   | String     |
 
 * `/api/deleteTodoitem` 該当ユーザが選定したToDoリストのToDoを削除する
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|
-      | TodoリストID | id         | Number |
+      | TodoリストID | _id         | ObjectId |
       | ユーザ名       | user   | String     |
       | ToDo名     | TodoTitle | String     |
 * `/api/changeIsdone` 該当ユーザが選定したToDoリストのToDoの`完了/未完了`変更する
   * 入力
     * | 内容       | フィールド名  | データ型  |
       |:---------:|:-----------:|:--------:|
-      | TodoリストID | id         | Number |
+      | TodoリストID | _id         | ObjectId |
       | ユーザ名       | user   | String     |
       | ToDo名     | TodoTitle | String     |
       | 完了/未完了 | isDone | Boolean  |
