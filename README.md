@@ -292,7 +292,14 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
       | 登録成功の場合 | 1000   | ユーザログアップ成功です。|被ったユーザデータ |
       | ユーザ名は既存ユーザに被った場合 | 1001   |このユーザ名はすでに登録されました。| ユーザデータ |
 ### フロントエンドの各ファイル説明
-* `Todo.vue`
+* `main.vue`
+  * JavaScriptのエントリーポイント
+* `App.vue`
+  * Vue.jsのエントリーポイント
+  * 共通ヘッダーとrouter-viewはここで設定
+* `router/index.js`
+  * ルータを設定
+* `pages/Todo.vue`
   * `sortBycreatedate()` ToDoリストに登録されたToDoの作成日が新しい順に表示するように、ToDoリストをsortする
   * `sendForm()`　入力内容をチェック、エラーメッセージを表示/`リストの作成`ボタンを押したら新しいToDoリストを作成する
   * `isInArray(list, keyword)`既存ToDoリストのうちにすでに入力したリスト名はありますか　をチェック
@@ -310,7 +317,7 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * `clickChangeButton ()` ログインダイアログから新規登録ダイアログを遷移する
   * `deleteTodolist (item)`　選定したリストを削除する
 
-* `Item.vue`
+* `pages/Item.vue`
   * `getTitle()` 該当ToDoが属するリストの名前を取得する
   * `sendForm()`　入力内容をチェック、エラーメッセージを表示/`ToDoの追加`ボタンを押したら新しいToDoを作成する
   * `isInArray (list, keyword)`　既存ToDoのうちにすでに入力したToDo名はありますか　をチェック
@@ -320,7 +327,7 @@ ToDo一覧/新しいToDoを作成/ToDo状態変更
   * `getAllTodoitem ()` データベースから該当ユーザが選定したリストの全てのリストを取得する
   * `deleteTodoitem (item)`　選定したToDoを削除する
 
-* `Search.vue`
+* `pages/Search.vue`
   * `searchTodo (lists, keyword)` キーワードを含まれているToDoリストとToDoを検索する
   * `jumpTolist(item)`　リストとToDoの名前をクリックすると、このリストのToDo画面を遷移する
   * `getDate (item)`　日付フォーマット転換
