@@ -127,7 +127,7 @@ export default {
       } else {
         this.isAlertShowDDL2 = false
         var today = new Date()
-        if (moment(this.TodoDDL).isBefore(today)) {
+        if (moment(this.TodoDDL).isBefore(today) || moment(this.TodoDDL).isSame(today)) {
           // 期限は作成日の前
           this.isAlertShowDDL = true
         } else {

@@ -39,6 +39,7 @@ router.post('/api/createTodoitem', (req, res) => {
     isDone: req.body.isDone
   })
   console.log(newTodoitem)
+  var TodoCreateData = req.body.TodoCreateData
 
   // update todolist
   db.Todolist.update(
@@ -47,7 +48,7 @@ router.post('/api/createTodoitem', (req, res) => {
       $push: {
         TodoItem: {
           $each: [newTodoitem],
-          $sort: {_id: -1}
+          $sort: {TodoCreateData: -1}
         }
       }
     }, (err, data) => {
@@ -75,7 +76,7 @@ router.get('/api/getallTodolist', (req, res) => {
 // Get all Todoitem
 router.get('/api/getallTodoitem', (req, res) => {
   // find data by Model
-  db.Todolist.find({_id: req.query._id, user: req.query.user}, null, {sort: {_id: -1}}, (err, data) => {
+  db.Todolist.find({_id: req.query._id, user: req.query.user}, (err, data) => {
     console.log(req.query)
     if (err) {
       res.send(err)
