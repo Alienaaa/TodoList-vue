@@ -246,6 +246,7 @@ export default {
         var TodoItem = item.TodoItem
         var ApproachingDDL = moment('2030-01-01')
         console.log(ApproachingDDL)
+        console.log(ApproachingDDL.isValid())
         for (var i = 0; i < TodoItem.length; i++) {
           if ((moment().isBefore(TodoItem[i].TodoDDL) || moment().isSame(TodoItem[i].TodoDDL)) && (TodoItem[i].isDone === false)) {
             if (moment(TodoItem[i].TodoDDL).isBefore(ApproachingDDL)) {
