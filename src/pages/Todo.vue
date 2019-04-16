@@ -97,7 +97,8 @@
             </div>
             <div v-else class="text item">
               <p>{{item.TodoItem.length}}個中{{isChecked(item).length}}個がチェック済み</p>
-              <p>~{{getDate(approachingDDL(item))}}</p>
+              <p v-if="(approachingDDL(item) === -2)">登録されたToDoは全てチェック済み</p>
+              <p v-else >~{{getDate(approachingDDL(item))}}</p>
             </div>
           </el-card>
         </div>
@@ -242,11 +243,12 @@ export default {
     },
 
     approachingDDL (item) {
+      // var _this = this
       if (item.TodoItem.length !== 0) {
         var TodoItem = item.TodoItem
         var ApproachingDDL = moment('2030-01-01')
-        console.log(ApproachingDDL)
-        console.log(ApproachingDDL.isValid())
+        // console.log(ApproachingDDL)
+        // console.log(ApproachingDDL.isValid())
         for (var i = 0; i < TodoItem.length; i++) {
           if ((moment().isBefore(TodoItem[i].TodoDDL) || moment().isSame(TodoItem[i].TodoDDL)) && (TodoItem[i].isDone === false)) {
             if (moment(TodoItem[i].TodoDDL).isBefore(ApproachingDDL)) {
@@ -254,7 +256,12 @@ export default {
             }
           }
         }
-        return ApproachingDDL
+        if (ApproachingDDL.isSame(moment('2030-01-01'))) {
+          return -2
+        } else {
+          console.log('0')
+          return ApproachingDDL
+        }
       } else {
         return -1
       }
