@@ -39,7 +39,7 @@ router.post('/api/createTodoitem', (req, res) => {
     isDone: req.body.isDone
   })
   console.log(newTodoitem)
-  var TodoCreateData = req.body.TodoCreateData
+  var CreateData = req.body.TodoCreateData
 
   // update todolist
   db.Todolist.update(
@@ -48,7 +48,7 @@ router.post('/api/createTodoitem', (req, res) => {
       $push: {
         TodoItem: {
           $each: [newTodoitem],
-          $sort: {TodoCreateData: -1}
+          $sort: {CreateData: -1}
         }
       }
     }, (err, data) => {
