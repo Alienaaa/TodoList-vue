@@ -363,3 +363,5 @@ npm run dev
 ## 動作確認URL
 >Supported by [Heroku](https://www.heroku.com/)<br>
 https://todolist-alien.herokuapp.com/
+
+`IE 11` `Firefox 66.0.3` `Microsoft Edge` `Chrome  73.0.3683.103` `Safari  9.0.2` 動作チェック済み
