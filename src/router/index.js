@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Search from '@/pages/Search'
-import Todo from '@/pages/Todo'
+// import Todo from '@/pages/Todo'
 import Item from '@/pages/Item'
+import Edit from '@/pages/Edit'
 
 Vue.use(Router)
 
@@ -10,8 +11,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'TodoList',
-      component: Todo
+      name: 'Item',
+      component: Item
     },
     {
       path: '/search',
@@ -19,9 +20,9 @@ export default new Router({
       component: Search
     },
     {
-      path: '/item/:user/:title',
-      name: 'Item',
-      component: Item
+      path: '/edit/:id',
+      name: 'Edit',
+      component: Edit
     }
   ]
 })

@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import Todo from './pages/Todo.vue'
+import Item from './pages/Item.vue'
 
 export default {
   name: 'App',
   components: {
-    'todo': Todo
+    'item': Item
   }
 }
 </script>

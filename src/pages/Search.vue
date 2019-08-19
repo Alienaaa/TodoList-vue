@@ -19,32 +19,15 @@
     <div v-for="(item,index) in resultForTodo" v-bind:key="index"  class="todo-item">
         <el-card class="box-card" shadow="hover">
           <div slot="header" class="clearfix">
-            <span class="todo-title" v-on:click="jumpTolist(item)">{{item.TodoTitle}}</span>
+            <span>{{item.todoTitle}}</span>
+          </div>
+          <div class="todo-button" style="width:200px;float:right">
+            <el-button type="success" round v-on:click="jumpToedit(item)" style="float:left">編集</el-button>
+            <el-button :type="item.isDone?'primary':'danger'" round v-on:click="changeButton(item)" style="float:right">{{item.isDone?'完了':'未完了'}}</el-button>
           </div>
           <div class="text item" style="float:left">
-            <p>リスト：{{item.title}}</p>
-          </div>
-          <div class="text item" style="float:right">
-            <p>期限：{{getDate(item.TodoDDL)}}</p>
-            <p>作成日：{{getDate(item.TodoCreateData)}}</p>
-          </div>
-        </el-card>
-    </div>
-
-    <!-- Search Result(Todo list) -->
-
-      <div  v-show="ifClickSearch">
-        <el-alert class="alert-search" v-if="resultForTodoList.length==0" type="error" :closable="false">対象のToDoリストは見つかりません</el-alert>
-        <el-alert class="alert-search" v-else type="success" :closable="false">ToDoリストが{{this.numOfList}}件見つかりました</el-alert>
-      </div>
-
-    <div v-for="(item,index) in resultForTodoList" v-bind:key="index"  class="todo-list">
-        <el-card class="box-card" shadow="hover">
-          <div slot="header" class="clearfix">
-            <span class="todolist-title"  v-on:click="jumpTolist(item)">{{item.title}}</span>
-          </div>
-          <div class="text item" style="float:right">
-            <p>作成日：{{getDate(item.listCreateData)}}</p>
+            <p>期限：{{getDate(item.todoDDL)}}</p>
+            <p>作成日：{{getDate(item.todoCreateData)}}</p>
           </div>
         </el-card>
     </div>
@@ -63,79 +46,37 @@ export default {
       searchText: '',
       ifClickSearch:false,
       numOfTodo:0,
-      numOfList:0,
+      // numOfList:0,
       resultForTodo:[],
-      resultForTodoList:[],
+      // resultForTodoList:[],
       todoList: [],
-      username: '',
+      // username: '',
       isGettitle: false
     }
   },
   created () {
-    this.username = window.sessionStorage.user ? JSON.parse(window.sessionStorage.user).name : 'public'
+    // this.username = window.sessionStorage.user ? JSON.parse(window.sessionStorage.user).name : 'public'
   },
   methods: {
     searchTodo (lists, keyword) {
       var _this = this
-      var result_list = []
+      // var result_list = []
       var result_todo = []
       // console.log(_this.todoList[3].TodoItem)
       if (keyword) {
-        /*
-        keyword = keyword.trim().toLowerCase()
 
-        for (var i =0;i<lists.length;i++){
-          if(lists[i].TodoItem){
-            // console.log(list[i].TodoItem)
-            var TodoItem = lists[i].TodoItem
-
-            var result_todo_tmp = TodoItem.filter(function (item) {
-              if ((item.TodoTitle.toLowerCase().indexOf(keyword)) !== -1) {
-                return item
-              }
-            })
-            if(result_todo_tmp.length>0){
-              result_todo.push(result_todo_tmp)
-            }
-          }
-        }
-
-        result_list = lists.filter(function (item) {
-          if ((item.title.toLowerCase().indexOf(keyword)) !== -1) {
-            return item
-          }
-        })
-        // console.log(result_todo)
-        // console.log(result_list)
-        */
-
-      axios.get('/api/searchTodolist', {
-        params: {
-          keyword: this.searchText,
-          user: _this.username
-        }
-      })
-        .then(function (response) {
-          _this.resultForTodoList = response.data
-          _this.numOfList = _this.resultForTodoList.length
-          console.log('success')
-          console.log(response.data)
-          _this.ifClickSearch = true
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
+       console.log(this.searchText)
 
       axios.get('/api/searchTodoitem', {
         params: {
-          keyword: this.searchText,
-          user: _this.username
+          keyword: this.searchText
+          // user: _this.username
         }
       })
         .then(function (response) {
           _this.resultForTodo = response.data
           _this.numOfTodo = _this.resultForTodo.length
-          console.log('success')
+          // console.log('success')
           console.log(response.data)
           _this.ifClickSearch = true
         })
@@ -148,17 +89,41 @@ export default {
 
      }
     },
-    jumpTolist(item) {
-      var _this = this
+    jumpToedit (item) {
+      // console.log(key)
+      // console.log(item.id)
+      // console.log(this.lists[item.id].title)
+      // console.log(item._id)
+      // var _this = this
       this.$router.push({
-          name: 'Item',
-          params: {
-            _id: item._id,
-            title: item.title,
-            user: _this.username
-            // list: item.title
-          }
+        name: 'Edit',
+        params: {
+          id: item.id
+        }
+      })
+    },
+    changeButton (item) {
+      item.isDone = !item.isDone
+      // console.log(item.isDone)
+      var change = {
+        // _id: item._id,
+        // TodoTitle: item.TodoTitle,
+        id: item.id,
+        todoTitle: item.todoTitle,
+        todoDDL: item.todoDDL,
+        todoCreateData: item.todoCreateData,
+        isDone: item.isDone
+        // user: this.$route.params.user
+      }
+      axios.post('/api/changeIsdone', change)
+        .then(function (response) {
+          console.log(response.data)
         })
+        .catch(function (error) {
+          console.log(error)
+        })
+      // this.getAllTodoitem()
+      // this.getAllTodoitem()
     },
     getDate (item) {
       return moment(item).format('LL')

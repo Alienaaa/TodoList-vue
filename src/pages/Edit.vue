@@ -1,22 +1,23 @@
 <template>
-  <div class="container">
-    <div>
+<div class="container">
+  <div>
       <h1></h1>
-      <h3 style="color:#666666">新しいToDoを作成する</h3>
+      <h3 style="color:#666666">ToDoの内容を変更します</h3>
       <el-form label-position="left" label-width="80px" class="input-form">
         <el-form-item label="ToDo名">
-          <el-input type="text" v-model="todoTitle"/>
+          <el-input type="text" v-model="todoTitle" placeholder="todoTitle"/>
         </el-form-item>
 
         <el-form-item label="期限">
           <el-date-picker
             v-model="todoDDL"
             type="date"
-            placeholder="Pick a day"
+            placeholder="todoDDL"
             class="datepicker">
           </el-date-picker>
-          <el-button type="primary" class="addtodo-button" v-on:click="sendForm" icon="el-icon-plus">ToDoの追加</el-button>
+          <el-button type="primary" class="addtodo-button" v-on:click="editTodo" icon="el-icon-refresh">更新</el-button>
         </el-form-item>
+
         <div class="alert-todo">
         <el-alert class="alert-todo-inner" v-show="isAlertShowDDL" title="期限は作成日の後にしてください" type="error" show-icon></el-alert>
         <el-alert class="alert-todo-inner" v-show="isAlertShowDDL2" title="期限を選択してください" type="error" show-icon></el-alert>
@@ -26,31 +27,8 @@
         </div>
 
       </el-form>
-    </div>
-
-    <div>
-      <div v-if="list.length !== 0">
-        <div v-for="(item,index) in list" v-bind:key="index"  class="todo-item">
-          <el-card class="box-card" shadow="hover">
-            <div slot="header" class="clearfix">
-              <span>{{item.todoTitle}}</span>
-            </div>
-            <div class="todo-button" style="width:200px;float:right">
-            <el-button type="success" round v-on:click="jumpToedit(item)" style="float:left">編集</el-button>
-            <el-button :type="item.isDone?'primary':'danger'" round v-on:click="changeButton(item)" style="float:right">{{item.isDone?'完了':'未完了'}}</el-button>
-            </div>
-            <div class="text item">
-              <p>期限：{{getDate(item.todoDDL)}}</p>
-              <p>作成日：{{getDate(item.todoCreateData)}}</p>
-            </div>
-          </el-card>
-        </div>
-      </div>
-      <div v-else>
-        <el-alert title="登録されたToDoはございません" type="error"></el-alert>
-      </div>
-    </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -61,9 +39,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      // lists: [],
       list: [],
-      // TodoItem: [],
       todoTitle: '',
       todoDDL: '',
       todoCreateData: '',
@@ -75,24 +51,40 @@ export default {
       buttonType: 'danger',
       buttonText: '未完了',
       type: ''
+
     }
   },
   created () {
-    this.getAllTodoitem()
-    this.getAllTodoitem()
+    this.getTodoItem()
   },
   methods: {
-    getTitle () {
-      // this.list = this.lists[this.$route.query.id]
-      return this.list.title
-    },
-    sendForm () {
+    getTodoItem () {
       var _this = this
+
+      axios.get('/api/getTodoitem', {params: {id: _this.$route.params.id}})
+        .then(function (response) {
+          _this.list = response.data
+          // console.log('success')
+          console.log(_this.list.todoTitle)
+          _this.todoTitle = _this.list.todoTitle
+          _this.todoDDL = _this.list.todoDDL
+          console.log(response.data)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    },
+    editTodo () {
+      var _this = this
+      // エスケープ処理(不要)
+      // v-textで出力なので、エスケープ処理は必要ない
+      // this.TodoTitle = this.htmlEscape(this.TodoTitle)
+
       var checkTodo = false
       var checkDDL = false
       if (this.todoTitle.length === 0) {
         // ToDo名は空の時
-        // console.log(this.TodoTitle.length)
+        // console.log(this.todoTitle.length)
         this.isAlertShowNULL = true
       } else {
         this.isAlertShowNULL = false
@@ -126,106 +118,44 @@ export default {
       }
       // console.log(this.$route.params.title)
       checkDDL = (!this.isAlertShowDDL2) && (!this.isAlertShowDDL)
+
       if (checkTodo && checkDDL) {
-        var item = {
-          // user: this.$route.params.user,
-          // _id: this.list._id,
-          // title: this.$route.params.title,
-          todoTitle: this.todoTitle,
-          todoDDL: this.todoDDL,
+        var change = {
+
+          id: _this.$route.params.id,
+          todoTitle: _this.todoTitle,
+          todoDDL: _this.todoDDL,
           todoCreateData: new Date(),
-          isDone: false}
-        console.log(item)
+          isDone: _this.list.isDone
+        }
+        // console.log(item)
         // this.list.TodoItem.unshift(item)
-        axios.post('/api/createTodoitem', item)
+        axios.post('/api/editTodoitem', change)
           .then(function (response) {
-            console.log(item)
-            console.log('success')
+          // console.log('item')
             // console.log(item)
             console.log(response)
-            _this.getAllTodoitem()
           })
           .catch(function (error) {
             console.log(error)
           })
-        // this.getAllTodoitem()
-        // this.getAllTodoitem()
+        _this.getTodoItem()
+        _this.getTodoItem()
 
-        this.todoDDL = ''
-        this.todoTitle = ''
-        this.todoCreateData = ''
+        _this.todoDDL = ''
+        _this.todoTitle = ''
+        _this.todoCreateData = ''
+
+        // jump to homepage
+        this.$router.push({name: 'Item'})
       }
     },
     isInArray (list, keyword) {
       // var TodoItem = list.TodoItem
       return _.find(list, {todoTitle: keyword})
-    },
-    getDate (item) {
-      return moment(item).format('LL')
-    },
-    changeButton (item) {
-      item.isDone = !item.isDone
-      // console.log(item.isDone)
-      // console.log(item.isDone)
-      var change = {
-        // _id: item._id,
-        // TodoTitle: item.TodoTitle,
-        id: item.id,
-        todoTitle: item.todoTitle,
-        todoDDL: item.todoDDL,
-        todoCreateData: item.todoCreateData,
-        isDone: item.isDone
-        // user: this.$route.params.user
-      }
-      axios.post('/api/changeIsdone', change)
-        .then(function (response) {
-          console.log(response.data)
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-      // this.getAllTodoitem()
-      // this.getAllTodoitem()
-    },
-    htmlEscape (str) {
-      if (!str) return
-      return str.replace(/[<>&"'`]/g, function (match) {
-        const escape = {
-          '<': '&lt;',
-          '>': '&gt;',
-          '&': '&amp;',
-          '"': '&quot;',
-          "'": '&#39;',
-          '`': '&#x60;'
-        }
-        return escape[match]
-      })
-    },
-    getAllTodoitem () {
-      var _this = this
-
-      // var item = {id: 0}
-      // console.log(_this.$route.meta)
-      axios.get('/api/getallTodoitem')
-        .then(function (response) {
-          _this.list = response.data
-          // console.log('success')
-          console.log(response.data)
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    },
-    jumpToedit (item) {
-      // console.log(key)
-      this.$router.push({
-        name: 'Edit',
-        params: {
-          id: item.id
-        }
-      })
     }
   }
+
 }
 </script>
 
